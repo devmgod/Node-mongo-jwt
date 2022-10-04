@@ -1,0 +1,189 @@
+{
+    "swagger": "2.0",
+  
+    "paths" : {
+        "http://209.126.3.155:8088/api/auth/signup" : {
+            "post" : {
+                "summary" : "Sign Up",
+                "description": "Sign Up",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Sign Up",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/signparams"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/signupsuccess"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/signupsuccess"
+                        }
+                    }
+                }
+            }
+        },
+        "http://209.126.3.155:8088/api/auth/signin" : {
+            "post" : {
+                "summary" : "Sign In",
+                "description": "Sign In",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Sign In",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/signparams"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/signupsuccess"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/signupsuccess"
+                        }
+                    }
+                }
+            }
+        },
+        "http://209.126.3.155:8088/api/test/user" : {
+            "get" : {
+                "summary" : "Test User Token",
+                "description": "Test User Token",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Test User Token",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/test"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/signupsuccess"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/signupsuccess"
+                        }
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "signparams": {
+            "type": "object",
+            "properties": {
+                "username": {
+                     "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "signupsuccess": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type":"string",
+                    "value": "User was registered successfully!"
+                }
+            }
+        },
+        "signinsuccess": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "roles": {
+                    "type": "string"
+                },
+                "accessToken": {
+                    "type": "string"
+                }
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+
+        },
+        "test": {
+            "type": "object",
+            "properties": {
+                "x-access-token": {
+                    "type": "string"
+                }
+            }
+
+        }
+    }
+}

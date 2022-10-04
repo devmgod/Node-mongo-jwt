@@ -1,0 +1,24 @@
+-Signup
+Post:http://209.126.3.155:8088/api/auth/signup
+
+body -> raw -> json
+parameters: 
+{
+    "username": "Hey",
+    "email": "hey@outlook.com",
+    "password": "hhh"
+}
+
+Post:http://209.126.3.155:8088/api/auth/signin
+parameters: 
+{
+    "username": "Hey",
+    "email": "hey@outlook.com",
+    "password": "hhh"
+}
+
+Confirm:
+Get: http://209.126.3.155:8088/api/test/user
+
+header:
+"x-access-token" : Your Token

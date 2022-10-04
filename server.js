@@ -1,8 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
+const bodyParser = require("body-parser");
+const fs = require('fs');
 
 const app = express();
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+const customCss = fs.readFileSync((process.cwd()+"/swagger.css"), 'utf8');
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -33,6 +39,9 @@ db.mongoose
     process.exit();
   });
 
+app.use(bodyParser.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {customCss}));
+
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
@@ -43,7 +52,7 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8088;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
