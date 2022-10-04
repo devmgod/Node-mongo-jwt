@@ -40,7 +40,7 @@ db.mongoose
   });
 
 app.use(bodyParser.json());
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {customCss}));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {customCss}));
 
 // simple route
 app.get("/", (req, res) => {
